@@ -1,0 +1,164 @@
+Ordering a hotel online before a trip 
+Objects and Behaviors:
+Things:
+1)	Customer
+i)	Data: location, nameOfHotel, dateOfTrip, numberPeople, creditCard, account
+ii)	Behavior: enter, buy, search, compare, return, cancel, login in, select
+2)	Priceline
+i)	Data: price, star, review, distance, 
+ii)	Behaviors: search, sort, compare, order, transaction, account,display
+3)	CreditCard 
+i)	Data: cardNmber, cardholder, expireDate, billAdress, SecurityCode
+ii)	Behavior: placeOrder
+
+
+Ordering a hotel online before a trip 
+	Customer Justin
+	Priceline pl
+	CredCard card
+TransactionResult result
+
+ResponeTime timeout
+
+
+
+Justin.loginToWeb -> web : success 
+If(web.isUp) 
+	Web.search -> priceline
+	If(timeout is false ) 
+	Loop
+		Justin.login -> pl.account  result: success
+		Justin.enter ->  location, nameOfHotel, dateOfTrip, numberPeople
+		pl.search -> price, star, review, distance
+		pl.sort -> review
+		Justin.select ->  pl.order
+		End
+
+		Card. placeOrder -> cardNmber, cardholder, expireDate, billAdress, SecurityCode
+		If(Result = false) 
+		Pl: display -> “Transaction fail”
+		Else
+		Pl: display -> “Transaction success”
+End
+
+
+
+
+
+Design job searching and posting platform
+Objects and Behaviors:
+1 JobType
+	Data: fullTime, contract, partTime, internship, temporary
+	Behavior: select
+2 Location
+	Data: city, zipCode,state
+	Behavior: add, change, search
+3 Salary
+	Data: 30K, 50K, 80K,100K,150K 
+	Behavior:  add, range
+4 Experience 
+	Data: entryLeve, midlevel, seniorLevel
+	Behavior: add
+5 company 
+	Data: Amazon, apple, google, mirosoft
+	Behavior: add
+6 jobTitle
+	Data: engineer, sale, tech, cheif	
+	Behavior: select
+7 user
+	Data: resume, email, cellphone
+	Behavior: add, remove, enter, select, find
+JobSearchPost
+jobType  jt
+Location location
+Salary Salary
+Experience exp
+Company cp
+User user
+jobTitle Jl
+	User.select -> jt.fullTime -> location.city.seattle -> salary. 100K -> exp.midLevel -> cp.amazon -> jl.engineer
+Loop
+	If user.findNoJob
+break
+	If userWantThisJob
+	user.slectThisJob -> user.upload -> user.resume 
+	user.enter -> user.cellphone 
+	End
+
+
+
+
+Booking uber
+1 userData
+	Data: cellphoneNumber, fullName, email, creditCard, userlocation
+	Behavior: change, remove, add, submit, cancel ,confirm 
+2. uber
+	Data: driverLocation, price, driverLeft
+	Behavior: buy, return,search, show
+4. driver 
+	Data: userLocation
+	Behavior: confirm
+3 uberType
+	Data: economy, premium, carpool
+	Behavior: select
+userData udata
+uber uber
+uberType ut
+driver driver
+loop
+if user.cancel
+break;
+user.enter -> cellphoneNumber, fullName, email, location
+uber.seach -> driverLocation
+if uber.driverLeft == 0 
+uber.showNoDriver 
+else 
+uber.show -> driverLocation, price
+user.select -> ut.premium 
+user.enter -> user. creditCard
+user.confirmOrer
+uber.send -> userlocation
+driver.pickup -> userlocation
+end 
+
+
+
+
+
+
+
+Ordering food in a restaurant 
+1 menu
+Data: appetizer, soup, mainClass, chiefSpecialties, dessert
+Behavior: select, remove, order, cancel, pickup, eat
+2 customer 	
+	Data: cash, creditCard, tips
+	Behavior: add, order, cancel, left, pay
+3 server
+	Data: here, toGo, payment
+	Behavior: ask, order, change, bring,placeOrder
+4 restaurant 	
+	Data: openHour, food
+	Behavior: open, close, cook
+Menu menu
+Customer customer
+server server
+restaurant restaurant
+if restaurantisOpen && customerisNotLeave
+		server.bring -> meun
+		customer.select -> appetizer, soup, mainClass, chiefSpecialties, dessert
+		server.placeOrder -> appetizer, soup, mainClass, chiefSpecialties, dessert
+		server.review -> payment 
+		server.ask -> here or toGo
+		if(customer.select toGo)
+restaurant.pay-> cash, tips
+		restaurant.cook -> food
+		 customer.pickup -> food
+	else 
+		restaurant.cook -> food
+		 customer.eat -> food
+restaurant.pay-> cash, tips
+
+
+End
+	
