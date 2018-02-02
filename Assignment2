@@ -1,0 +1,100 @@
+import java.util.*;
+
+/*
+ * Name: Zhihao Li
+ * Date: 01/31/2018
+ * Assignment2: 
+ * 1.	What is time complexity and space complexity? Explain them in the pages/word “Assignment 2”.(2 scores)
+ * The time complexity is amount of time need to take for running the function.
+ * The space complexity is amount of memory or space need to take for running the function.
+ *  */
+
+public class HW2 {
+	public static void main(String args[]) {
+		int[] array1 = { 0, 7, 11, 15, 4 };
+		int[][] array2 = { { 1, 0, 0, 0, 0 }, { 0, 1, 1, 0, 0 }, { 0, 0, 1, 0, 0 }, { 1, 0, 0, 0, 1 } };
+
+		int[][] array3 = new int[4][4];
+		int target = 15;
+
+		System.out.println("Method 1 index = " + Arrays.toString(indexOfTwoIntegerM1(array1, target)));
+		System.out.println("Method 2 index = " + Arrays.toString(indexOfTwoIntegerM2(array1, target)));
+
+		for (int[] row : array2) {
+			System.out.println(Arrays.toString(row));
+		}
+
+		numOfIsland(array2);
+
+	}
+
+	/*
+	 * For method 1 The time complexity is O(N^2) The space complexity is O(1)
+	 */
+	public static int[] indexOfTwoIntegerM1(int[] arr, int target) {
+		if (arr == null || arr.length < 2) {
+			throw new NullPointerException("implement array error");
+		}
+
+		for (int i = 0; i < arr.length; i++) {
+			for (int j = i + 1; j < arr.length; j++) {
+				if (arr[i] + arr[j] == target) {
+					return new int[] { i, j };
+				}
+			}
+		}
+		return new int[] { -1, -1 };
+
+	}
+
+	/*
+	 * For method 2 The time complexity is O(N) The space complexity is O(N)
+	 */
+	public static int[] indexOfTwoIntegerM2(int[] arr, int target) {
+		HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+		for (int i = 0; i < arr.length; i++) {
+			if (map.containsKey(arr[i])) {
+				int index = map.get(arr[i]);
+				return new int[] { index, i };
+			} else {
+				map.put(target - arr[i], i);
+			}
+		}
+		return new int[] { -1, -1 };
+	}
+
+	/*
+	 * The time complexity is O(m*n) The space complexity is O(m*n)
+	 */
+	public static void numOfIsland(int[][] arr) {
+		int counter = 0;
+		if (arr == null) {
+			throw new NullPointerException("parameter cannot be null");
+		}
+		for (int i = 0; i < arr.length; i++) {
+			for (int j = 0; j < arr[i].length; j++) {
+				if (arr[i][j] == 1) {
+					DeleteNearbyIsland(arr, i, j);
+					counter++;
+				}
+			}
+		}
+
+		System.out.println("number of island = " + counter);
+
+	}
+
+	public static void DeleteNearbyIsland(int[][] arr, int i, int j) {// clear out nearby island
+		if (i < 0 || j < 0 || i >= arr.length || j >= arr[i].length || arr[i][j] == 0) {
+			return;
+		}
+
+		arr[i][j] = 0;
+		DeleteNearbyIsland(arr, i + 1, j);// (recursion) check if upper island
+		DeleteNearbyIsland(arr, i - 1, j);// (recursion) check if lower island
+		DeleteNearbyIsland(arr, i, j + 1);// (recursion) check if right island
+		DeleteNearbyIsland(arr, i, j - 1);// (recursion) check if left island
+
+	}
+
+}
