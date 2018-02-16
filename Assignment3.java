@@ -1,4 +1,4 @@
-
+// total scores :  10 / 10
 import java.util.*;
 
 public class Assignment3 {
