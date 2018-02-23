@@ -1,3 +1,4 @@
+//total scores : 10 /10
 package Assignment4;
 
 import java.util.Scanner;
