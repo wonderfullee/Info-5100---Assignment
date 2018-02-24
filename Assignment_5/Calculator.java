@@ -104,7 +104,7 @@ public class Calculator extends Solution {
 
 	public double division(double numerator, double denominator) {
 		if (denominator == 0) {
-			throw new NullPointerException("denominator can not be zero");
+			throw new IllegalArgumentException("denominator can not be zero");
 		}
 		return numerator / denominator;
 	}
