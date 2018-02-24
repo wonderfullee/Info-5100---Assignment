@@ -14,7 +14,7 @@ public class Calculator extends Solution {
 	public void calculate() {
 		Scanner key = new Scanner(System.in);
 		while (true) {
-			System.out.println("Welcome! please see below to select your choice");
+			System.out.println("Welcome! please enter the integer to select your choice");
 			System.out.println("1.calculate sum of two number");
 			System.out.println("2.calculate subtraction of two number");
 			System.out.println("3.calculate multiplication of two number");
