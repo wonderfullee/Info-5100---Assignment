@@ -1,3 +1,5 @@
+// scores : 4 / 4  good job
+
 package Assignment_5;
 
 import java.util.Scanner;
