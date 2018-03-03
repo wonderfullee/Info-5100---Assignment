@@ -1,3 +1,5 @@
+// total scores : 10 /10
+
 // scores : 4 / 4  good job
 
 package Assignment_5;
