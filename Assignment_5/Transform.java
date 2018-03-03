@@ -1,3 +1,5 @@
+scores : 2 / 2
+
 package Assignment_5;
 
 /*
