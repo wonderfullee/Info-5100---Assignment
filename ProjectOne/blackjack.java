@@ -42,7 +42,7 @@ public class blackjack {
 		System.out.println("Cut at 7");
 		while (player.bankroll >= minimun && trickCount <= trick) {			
 			System.out.println("Trick " + trickCount + " Bankroll " + player.bankroll);
-			if (deck.getCurrentSize() < 30) {
+			if (deck.getCurrentSize() < 20) {
 				System.out.println("Shufﬂing the deck");
 				deck.reset();
 				deck.shuffle(7);
