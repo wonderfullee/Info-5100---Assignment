@@ -200,6 +200,9 @@ public class StudentManagerSystem extends JFrame implements ActionListener {
         ReadFromFile rf = new ReadFromFile();
         rf.setWindowFilePath("Z:\\neu\\test\\Student.txt"); // window system user only
                                                             // for changing file path
+        
+        //ReadFromFile.filePath = ""; // Mac OS user use only
+                                    // for changing file path
 
         sm = sp.load();
         sms.refreshTable();
